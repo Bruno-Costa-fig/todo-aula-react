@@ -2,32 +2,11 @@ import { useState } from 'react'
 import CardAdicionar from './components/CardAdicionar'
 import ListItem from './components/ListItem'
 import './App.css'
+import useListaTarefas from './hooks/useListaTarefas'
 
 function App() {
   // 1 parte
-  const [somenteFinalizados, setSomenteFinalizados] = useState(false)
-
-  const [list, setList] = useState([
-    { id: 1, texto: "Comprar pão na padaria", finalizado: false },
-    { id: 2, texto: "Comprar bolo na padaria", finalizado: true }
-  ])
-
-  const adicionarTarefa = ((texto) => {
-    let newList = [...list];
-    newList.push({
-      id: list.length + 1,
-      texto: texto,
-      finalizado: false,
-    });
-    setList(newList)
-    listaFiltrada = list.filter(item => item.finalizado)
-  })
-
-  const filtrarSomenteFinalizado = (valor) => {
-    setSomenteFinalizados(valor)
-  }
-
-  const listaFiltrada = list.filter(item => item.finalizado)
+  const {adicionarTarefa, list, filtrarSomenteFinalizado, listaFiltrada, setSomenteFinalizados, somenteFinalizados} = useListaTarefas()
 
   return (
     <div className="App">
